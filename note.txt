@@ -1,0 +1,20 @@
+sudo apt install resolvconf
+sudo nano /etc/resolvconf/resolv.conf.d/head
+sudo nano /etc/resolvconf/resolv.conf.d/tail
+sudo systemctl start resolvconf.service
+sudo resolvconf -u
+
+more /run/resolvconf/interface/original.resolvconf
+more /run/resolvconf/interface/systemd-resolved
+more /etc/resolvconf/resolv.conf.d/tail
+more /etc/resolvconf/resolv.conf.d/head
+
+more /etc/systemd/resolved.conf
+more /run/systemd/resolve/resolv.conf
+more /run/systemd/resolve/stub-resolv.conf
+more /etc/resolv.conf
+
+WORKAROUND
+sudo rm -f /etc/resolv.conf
+sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+reboot  (change to systemd-resolved restart && sudo systemctl restart networking)

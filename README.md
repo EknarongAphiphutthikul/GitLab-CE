@@ -57,5 +57,16 @@
     ```sh
     sudo netplan apply
     ```
+
+- Set DNS (change default 127.0.0.53 to 169.254.19.105)  
+  > **Important** : Workaround for  [Bug #1624320](https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1624320)
+  ```sh
+  sudo rm -f /etc/resolv.conf
+  sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+  sudo reboot
+  ```
 ----
+
 <br/>
+
+## Install GitLab-CE
