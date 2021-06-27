@@ -1,8 +1,8 @@
 # GitLab-CE
 
 ## Prepare System
-- Multiple VM Ubuntu version 20.04 on Hyper-V   [set up hyper-v on windows10](https://github.com/EknarongAphiphutthikul/Hyper-V)
-- DNS Server  [set up](https://github.com/EknarongAphiphutthikul/Dns-bind9)
+- Multiple VM Ubuntu version 20.04 on Hyper-V   [set up hyper-v on windows10](https://github.com/EknarongAphiphutthikul/Install-Hyper-V)
+- DNS Server  [set up](https://github.com/EknarongAphiphutthikul/Install-Dns-bind9)
 - Update Package On Ubuntu 20.04
   ```sh
   sudo apt-get update
@@ -255,6 +255,6 @@
   
   <br/>
 
-  ![](https://github.com/EknarongAphiphutthikul/GitLab-CE/blob/main/ChangeRootPassword.JPG)
+  ![](https://github.com/EknarongAphiphutthikul/Install-GitLab-CE/blob/main/ChangeRootPassword.JPG)
 
   <br/>
