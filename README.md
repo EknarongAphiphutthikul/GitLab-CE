@@ -150,6 +150,33 @@
     ```
     Want to use Let’s Encrypt instead? Check this [link](https://docs.gitlab.com/omnibus/settings/ssl.html#lets-encrypt-integration).
 
+    OR use CA, [click](https://github.com/EknarongAphiphutthikul/OpenSSL-Certificate-Authority)  
+    copy gitserver.cert.pem gitserver.key.pem ca-chain.cert.pem to /etc/gitlab/ssl
+    ```sh
+    ls /etc/gitlab/ssl
+    ```
+    ```console
+    ca-chain.cert.pem  gitserver.cert.pem  gitserver.key.pem
+    ```
+
+    ```sh
+    # decrypt key
+    sudo openssl rsa -in gitserver.key.pem -out gitserver-demo.key -passin pass:changeit
+
+    # merge file crt
+    sudo cat gitserver.cert.pem ca-chain.cert.pem > gitserver-demo.crt
+
+    # change file name
+    sudo mv ca-chain.cert.pem ca.crt
+
+    # copy file
+    sudo mkdir /etc/gitlab/trusted-certs
+    sudo cp /etc/gitlab/ssl/gitserver-demo.crt /etc/gitlab/trusted-certs/
+
+    # delete file
+    sudo rm gitserver.cert.pem  gitserver.key.pem
+    ```
+
   - Configure a URL for GitLab Server
     ```sh
     sudo nano /etc/gitlab/gitlab.rb
@@ -187,6 +214,10 @@
     ##!                   https://cipherli.st/**
     nginx['ssl_protocols'] = "TLSv1.2 TLSv1.3"
 
+    ```
+    if use CA must uncomment nginx['ssl_client_certificate'] in /etc/gitlab/gitlab.rb
+    ```console
+    nginx['ssl_client_certificate'] = "/etc/gitlab/ssl/ca.crt"
     ```
   - Reconfigure GitLab
     ```sh
